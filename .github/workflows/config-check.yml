@@ -1,0 +1,23 @@
+name: Config Check Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  validate-config:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Show files
+        run: ls -la
+
+      - name: Make script executable
+        run: chmod +x scripts/check-config.sh
+
+      - name: Run config check
+        run: ./scripts/check-config.sh
